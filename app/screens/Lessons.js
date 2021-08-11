@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, Text, StatusBar, StyleSheet } from 'react-native'
-import ShowAllLessons from  './app/components/Lessons/ShowAllLessons'
+import ShowAllLessons from '../components/Lesson/showAllLessons';
+
 
 export default function Lessons() {
   return (
     <View style={styles.container}>
       <Text>Sesions</Text>
-      <ShowAllLessons/>
+    <ShowAllLessons/>
       <StatusBar style="auto" />
     </View>
   );

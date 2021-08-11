@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
+import Lesson from '../../screens/Lesson';
 
 export default function ShowAllLessons() {
 
@@ -59,13 +60,13 @@ export default function ShowAllLessons() {
         <View>
           <Text style={styles.title}>{item.title}</Text>
           <Text>{item.photo}</Text>
-          <Text>{item.time}</Text>
+          <Text>{item.category}</Text>
           <Text>{item.teacher}</Text>
           <Button
               title="View More"
-              onPress={() => navigation.navigate('Leson', {
+              onPress={() => navigation.navigate('Lesson', {
                 id: item.id,
-                title,
+                title: item.title,
               })}
             /> 
         </View>

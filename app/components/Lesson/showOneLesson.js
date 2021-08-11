@@ -3,8 +3,8 @@ import { View, Text, StatusBar, StyleSheet, Button, FlatList } from 'react-nativ
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native'
 
-export default function Lesson() {
-  const [Lesson, setLesson] = useState({})
+export default function ShowOneLesson() {
+  const [lesson, setLesson] = useState({})
   const route = useRoute()
 
   useEffect(() => {
@@ -19,12 +19,12 @@ export default function Lesson() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{Lesson.title}</Text>
-          <Text>{item.description}</Text>
-          <Text>{item.photo}</Text>
-          <Text>{item.category}</Text>
-          <Text>{item.video}</Text>
-          <Text>{item.tags}</Text>
+      <Text style={styles.title}>{lesson.title}</Text>
+          <Text>{lesson.description}</Text>
+          <Text>{lesson.photo}</Text>
+          <Text>{lesson.category}</Text>
+          <Text>{lesson.video}</Text>
+          <Text>{lesson.tags}</Text>
       <StatusBar style="auto" />
     </View>
   );

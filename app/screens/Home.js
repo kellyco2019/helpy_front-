@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StatusBar, StyleSheet, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import ShowAllLessons from '../components/Lesson/showAllLessons';
 
 // export default function Home({ navigation }) {
 export default function Home() {
@@ -9,10 +10,10 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
-      <Button
+      {/* <Button
         title="About"
         onPress={() => navigation.navigate('About')}
-      />
+      /> */}
       <Button
         title="Go to Profile"
         onPress={() => navigation.navigate('Profile')}
@@ -21,6 +22,7 @@ export default function Home() {
         title="Go to Lessons"
         onPress={() => navigation.navigate('Lessons')}
       />
+      <ShowAllLessons/>
       <StatusBar style="auto" />
     </View>
   );
