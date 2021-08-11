@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react'
-import { View, Text, StatusBar, StyleSheet } from 'react-native'
-import  Register  from '../components/teacherMember/formSignUp';
-import  SignIn  from '../components/teacherMember/formSignIn';
+import { View, Text, StyleSheet } from 'react-native'
+import ModalLogIn from '../components/teacherMember/modalLogIn';
+import ModalRegister from '../components/teacherMember/modalRegister';
 
 export default function LogIn() {
   return (
     <View style={styles.container}>
-      <Text>Welcome</Text>
-       <Register/>
-       <SignIn/>
-       <Button>Teacher</Button>
+      <Text>Welcome to Helpy</Text>
+      <ModalRegister />
+      <ModalLogIn />
       <StatusBar style="auto" />
     </View>
   );
@@ -19,9 +18,9 @@ export default function LogIn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

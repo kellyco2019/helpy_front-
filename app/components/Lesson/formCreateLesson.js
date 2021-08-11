@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Switch } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
 import Slider from '@react-native-community/slider';
 
 
@@ -9,9 +9,11 @@ export default function CreateLesson() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState()
-    const [time, setTime] = useState(0)
+    const [selectedLanguage, setSelectedLanguage] = useState();
+    // const [time, setTime] = useState(10)
     //const [photo, setPhoto] = useState('')
     const [terms, setTerms] = useState(false)
+
 
     function handleSubmit() {
         console.log({ title, description, category, time, terms })
@@ -31,21 +33,31 @@ export default function CreateLesson() {
                 onChangeText={value => setDescription(value)}
                 value={description}
             />
+            <Text>Categoryss</Text>
             <Picker
-                onValueChange={value => setCategory(value)}
+  selectedValue={selectedLanguage}
+  onValueChange={(itemValue, itemIndex) =>
+    setSelectedLanguage(itemValue)
+  }>
+  <Picker.Item label="Java" value="java" />
+  <Picker.Item label="JavaScript" value="js" />
+</Picker>
+            {/* <Picker
+                onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
                 selectedValue={category}
             >
                 <Picker.Item label="Meditation" value="meditate" />
                 <Picker.Item label="Yoga" value="yoga" />
-            </Picker>
+            </Picker> */}
+            <Text>How long is video?</Text>
             <Slider
                 style={{ width: 200, height: 40 }}
                 minimumValue={10}
                 maximumValue={50}
                 minimumTrackTintColor="#FFFFFF"
                 maximumTrackTintColor="#000000"
-                onValueChange={time => setTime(time)}
-                value={time}
+                // onValueChange={time => setTime(time)}
+                // value={time}
             />
             {/* <TextInput
         placeholder="length"

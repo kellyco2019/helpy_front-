@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import Slider from '@react-native-community/slider';
 
 
-export default function CreateLesson() {
+export default function UpdateLesson() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState()
@@ -13,7 +13,7 @@ export default function CreateLesson() {
     //const [photo, setPhoto] = useState('')
     
     function handleSubmit() {
-        console.log({ title, description, category, time, terms })
+        console.log({title, description, category, time, terms })
     }
 
     return (
