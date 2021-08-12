@@ -9,15 +9,13 @@ export default function CreateLesson() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState()
-    const [selectedLanguage, setSelectedLanguage] = useState();
+  //  const [selectedLanguage, setSelectedLanguage] = useState();
     // const [time, setTime] = useState(10)
     //const [photo, setPhoto] = useState('')
     const [terms, setTerms] = useState(false)
 
 
-    function handleSubmit() {
-        console.log({ title, description, category, time, terms })
-    }
+
 
     return (
         <View style={styles.container}>
