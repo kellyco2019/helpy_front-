@@ -12,7 +12,7 @@ export default function Profile() {
       <ShowProfile />
       <ModalUpdateProfile/>
       <ModalUpdatePhotoProfile/>
-      <ModalCreateLesson />
+      <ModalCreateLesson/>
       <StatusBar style="auto" />
     </View>
   );

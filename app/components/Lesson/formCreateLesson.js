@@ -1,22 +1,60 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Switch } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Slider from '@react-native-community/slider';
+import { StyleSheet, Text, View, TextInput, Button , Switch, SafeAreaView , ActivityIndicator } from 'react-native';
+import axios from 'axios'
+import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native'
 
 
 export default function CreateLesson() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState()
-  //  const [selectedLanguage, setSelectedLanguage] = useState();
     // const [time, setTime] = useState(10)
     //const [photo, setPhoto] = useState('')
     const [terms, setTerms] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
+    const route = useRoute()
+    const navigation = useNavigation()
 
-
-
-
+  function handleSubmit() {
+   
+    setLoading(true)
+    // axios({
+    //   method: 'POST',
+    //   baseURL: 'http://192.168.20.21:8000',
+    //   url: `/teacher/teacherProfile/${route.params.id}`,
+    //   data : { title, description, category },
+    // })
+    // .then(({ data }) => {
+    //   console.log(data)
+    //     navigation.navigate('Lesson')
+    //   })
+    //   .catch(() => {
+    //     setError(true)
+    //   })
+    //   .finally(() => {
+    //     setLoading(false)
+    //   })
+    // console.log({ email, password })
+  }
+  if(loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    )
+  }
+  if(error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>Try Later</Text>
+      </SafeAreaView>
+    )
+  }
     return (
         <View style={styles.container}>
             <Text>Title</Text>
@@ -33,20 +71,12 @@ export default function CreateLesson() {
             />
             <Text>Categoryss</Text>
             <Picker
-  selectedValue={selectedLanguage}
-  onValueChange={(itemValue, itemIndex) =>
-    setSelectedLanguage(itemValue)
-  }>
-  <Picker.Item label="Java" value="java" />
-  <Picker.Item label="JavaScript" value="js" />
-</Picker>
-            {/* <Picker
                 onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
                 selectedValue={category}
             >
                 <Picker.Item label="Meditation" value="meditate" />
                 <Picker.Item label="Yoga" value="yoga" />
-            </Picker> */}
+            </Picker>
             <Text>How long is video?</Text>
             <Slider
                 style={{ width: 200, height: 40 }}
@@ -57,25 +87,16 @@ export default function CreateLesson() {
                 // onValueChange={time => setTime(time)}
                 // value={time}
             />
-            {/* <TextInput
-        placeholder="length"
-        onChangeText={time => setTime(time)}
-        value={time}
-        keyboardType="number-pad"
-      />
-       <TextInput
-        placeholder="photo"
-        onChangeText={value => setPhoto(value)}
-        value={photo}
-      />  */}
             <Switch
                 onValueChange={value => setTerms(value)}
                 value={terms}
             />
+             
             <Button
                 title="Create Event"
                 onPress={handleSubmit}
             />
+              
             <StatusBar style="auto" />
         </View>
     )
