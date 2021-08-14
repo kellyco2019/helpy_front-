@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StatusBar, StyleSheet } from "react-native";
 import ModalCreateLesson from "../components/Lesson/modalCreateLesson";
@@ -5,6 +6,7 @@ import ModalUpdatePhotoProfile from "../components/teacherMember/modalUpdatePhot
 import ModalUpdateProfile from "../components/teacherMember/modalUpdateProfile";
 import ShowProfile from "../components/teacherMember/showProfile";
 
+route = useRoute
 export default function Profile() {
   return (
     <View style={styles.container}>

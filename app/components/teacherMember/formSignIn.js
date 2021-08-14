@@ -37,7 +37,7 @@ export default function SignIn() {
        // lo deje ir a la parte de lessons
       if (data.token){
         storeData(data.token)
-        navigation.navigate('Home', {params : data._id})
+        navigation.navigate('Home' )
       } else {
         navigation.navigate('LogIn')
       }})

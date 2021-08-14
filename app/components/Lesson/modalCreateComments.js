@@ -3,7 +3,7 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import FormComments from "./formComments";
 
 
-export default function ModalUpdatelesson() {
+export default function ModalCreateComments() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -18,8 +18,8 @@ export default function ModalUpdatelesson() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Update Lesson</Text>
-            <UpdateLesson/>
+            <Text style={styles.modalText}>Comments</Text>
+            <FormComments/>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -33,7 +33,7 @@ export default function ModalUpdatelesson() {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.textStyle}>Update Lesson</Text>
+        <Text style={styles.textStyle}>Add your Comments</Text>
       </Pressable>
     </View>
   );
