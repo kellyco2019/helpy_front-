@@ -31,9 +31,7 @@ export default function ShowAllLessons() {
         setLoading(false)
       })
   }, [])
-  // useEffect(() => {
-  //   // console.log(data)
-  // },[lessons])
+
 
   if(loading) {
     return (
@@ -56,7 +54,7 @@ export default function ShowAllLessons() {
      <FlatList
        style={styles.list}
        data={lessons}
-      renderItem={({ item }) => (
+       renderItem={({ item }) => (
         <View>
           <Text style={styles.title}>{item.title}</Text>
           <Text>{item.photo}</Text>
@@ -65,13 +63,13 @@ export default function ShowAllLessons() {
           <Button
               title="View More"
               onPress={() => navigation.navigate('Lesson', {
-                id: item.id,
+                _id: item._id,
                 title: item.title,
               })}
             /> 
         </View>
       )}
-      keyExtractor={(item) => `${item._id}`} 
+      keyExtractor={item => `${item._id}`} 
     />
     <StatusBar style="auto" /> 
   </SafeAreaView>

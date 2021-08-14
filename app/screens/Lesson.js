@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StatusBar, StyleSheet } from 'react-native'
-import ModalUpdateLesson from '../components/Lesson/modalUpdateLesson';
+import ModalCreateComments from '../components/Lesson/modalCreateComments';
 import ShowOneLesson from '../components/Lesson/showOneLesson';
 
 
@@ -10,7 +10,7 @@ export default function Lesson() {
     <View style={styles.container}>
       <Text>Session</Text>
       <ShowOneLesson/>
-      <ModalUpdateLesson/>
+      <ModalCreateComments/>
       <StatusBar style="auto" />
     </View>
   );

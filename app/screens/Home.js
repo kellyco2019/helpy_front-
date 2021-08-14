@@ -16,7 +16,7 @@ export default function Home() {
       /> */}
       <Button
         title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('Profile' , {})}
       />
        <Button
         title="Go to Lessons"

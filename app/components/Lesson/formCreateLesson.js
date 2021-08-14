@@ -6,40 +6,52 @@ import { StyleSheet, Text, View, TextInput, Button , Switch, SafeAreaView , Acti
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CreateLesson() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState()
-    // const [time, setTime] = useState(10)
+    //const [time, setTime] = useState(10)
     //const [photo, setPhoto] = useState('')
     const [terms, setTerms] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const route = useRoute()
+    console.log(route)
     const navigation = useNavigation()
 
-  function handleSubmit() {
+    console.log(route.params)
+    
+  async function handleSubmit() {
    
     setLoading(true)
-    // axios({
-    //   method: 'POST',
-    //   baseURL: 'http://192.168.20.21:8000',
-    //   url: `/teacher/teacherProfile/${route.params.id}`,
-    //   data : { title, description, category },
-    // })
-    // .then(({ data }) => {
-    //   console.log(data)
-    //     navigation.navigate('Lesson')
-    //   })
-    //   .catch(() => {
-    //     setError(true)
-    //   })
-    //   .finally(() => {
-    //     setLoading(false)
-    //   })
-    // console.log({ email, password })
+    const token =  await AsyncStorage.getItem('token')
+    console.log('soyeltoken', token)
+    axios({
+      method: 'POST',
+      baseURL: 'http://192.168.20.21:8000',
+      url: '/lessons/teacherProfile/',
+      data : { title, description, category },
+      headers : {
+        Authorization : `token ${token}`
+      }
+    })
+    .then(({ data }) => {
+      console.log(data)
+      navigation.navigate('Lesson', {
+        _id: data._id,
+        title: data.title,
+      })
+      })
+      .catch((e) => {
+        setError(true)
+        console.log(e.message)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  
   }
   if(loading) {
     return (

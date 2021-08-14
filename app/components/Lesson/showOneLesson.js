@@ -7,6 +7,8 @@ export default function ShowOneLesson() {
   const [lesson, setLesson] = useState({})
   const route = useRoute()
 
+  console.log(route.params)
+
   useEffect(() => {
     axios({
       method: 'GET',
