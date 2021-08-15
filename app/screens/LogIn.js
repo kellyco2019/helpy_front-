@@ -10,7 +10,10 @@ const image = { uri: "https://reactjs.org/logo-og.png" };
 
 export default function LogIn() {
   <View style={styles.containerBack}>
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground 
+    source={image} 
+    resizeMode="cover" 
+    style={styles.image}>
     <Text style={styles.text}>Inside</Text>
   </ImageBackground>
 </View>
