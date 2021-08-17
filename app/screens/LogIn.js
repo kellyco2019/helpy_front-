@@ -10,21 +10,22 @@ const image = { uri: "https://reactjs.org/logo-og.png" };
 
 export default function LogIn() {
   <View style={styles.containerBack}>
+
+</View>
+
+  return (
+    <View style={styles.container}>
     <ImageBackground 
     source={image} 
     resizeMode="cover" 
     style={styles.image}>
     <Text style={styles.text}>Inside</Text>
-  </ImageBackground>
-</View>
-
-  return (
-    <View style={styles.container}>
-   
-      <Text>Welcome to OM</Text>
+  
+      <Text>Welcome al app</Text>
       <ModalRegister />
       <ModalLogIn />
       <StatusBar style="auto" />
+      </ImageBackground>
     </View>
   );
 }
