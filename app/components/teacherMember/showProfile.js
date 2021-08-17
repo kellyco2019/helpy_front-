@@ -1,25 +1,57 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { View, Text, StatusBar, StyleSheet } from 'react-native'
+import { StyleSheet, View, Text , SafeAreaView, ActivityIndicator } from 'react-native'
 import axios from 'axios'
-import { useRoute } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ShowProfile() {
   
   const [profile, setProfile] = useState({})
-  // const route = useRoute()
+  console.log("profileeeeeeee", profile)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
-  // //esta linea es de roomatch
-  // //const [profile, setProfile] = useState(dataProfile);
+const getData = async() => await AsyncStorage.getItem('token')
+ console.log(AsyncStorage.getItem('token'))
+  useEffect(() => {
+    setLoading(true)  
+    const token = getData()
+    console.log('soyeltoken', token)
+    axios({
+      method: 'GET',
+      baseURL: 'http://192.168.20.21:8000',
+      url: '/teacher/',
+      headers : {
+        authorization : `token ${token}`
+      }
+    })
+      .then(({ data }) => {
+        console.log(data)
+        setProfile(data)
+      })
+      .catch(() => {
+        setError(true)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     baseURL: 'http://192.168.20.21:8000',
-  //     url: `/teacher/${route.params._id}`
-      
-  //   })
-  //     .then(({ data }) => setProfile(data))
-  // }, [])
+
+  if(loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    )
+  }
+  if(error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>oopp! cant update info</Text>
+      </SafeAreaView>
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -27,9 +59,6 @@ export default function ShowProfile() {
           <Text>{profile.description}</Text>
           <Text>{profile.email}</Text>
           <Text>{profile.photo}</Text>
-          <Text>{profile.category}</Text>
-          <Text>{profile.video}</Text>
-          <Text>{profile.tags}</Text>
       <StatusBar style="auto" />
     </View>
   );

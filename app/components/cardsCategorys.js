@@ -1,29 +1,37 @@
 import React from "react";
-import { Pressable, View , TouchableHighlight, TouchableOpacity } from "react-native";
+import { View , TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 export default function CardsCategory() {
+ 
+  const navigation = useNavigation()
 
     function handleSubmitOne() {
-        console.log('hola mundo')
+      console.log('hola parce')
+      navigation.navigate('Category', {
+        _category: 'retos'
+      })
     }
 
     function handleSubmitTwo() {
         console.log('que mas?')
+        navigation.navigate('Category', {
+          _category: 'gente fuerte'
+        })
     }
 
     function handleSubmitTree() {
-        console.log('soy cora')
+      console.log('que mas?')
+      navigation.navigate('Category', {
+        _category: 'gente_triste'
+      })
     }
 
-    // function handleSubmitFour() {
-    //     console.log('soy cora')
-    //}
+  
   return (
         <View
           style={{
              flexDirection: "row",
-            // width: 250,
-            // height: 250,
             padding: 5
           }}
         >
