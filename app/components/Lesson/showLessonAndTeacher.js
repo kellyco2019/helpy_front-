@@ -1,20 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, FlatList } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function ShowProfile() {
 
-  const [profile, setProfile] = useState({})
-  console.log("profileeeeeeee", profile)
+
+export default function ShowLessonAndTeacher() {
+  const [lesson, setLesson] = useState([])
+  console.log("lessonnnnnnnn", lesson)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
   const getData = async () => await AsyncStorage.getItem('token')
 
   useEffect(() => {
-    async function loadProfile() {
+    async function loadLesson() {
       setLoading(true)
       //const getData = async () => await AsyncStorage.getItem('token') 
       const token = await getData()
@@ -23,13 +24,13 @@ export default function ShowProfile() {
       axios({
         method: 'GET',
         baseURL: 'http://192.168.20.21:8000',
-        url: '/teacher/',
+        url: '/lessons/teacher/',
         headers: {
           Authorization: `Token ${token}`
         }
       })
         .then(({ data }) => {
-          setProfile(data)
+          setLesson(data)
           console.log(data)
         })
         .catch((error) => {
@@ -42,7 +43,7 @@ export default function ShowProfile() {
         })
 
     }
-    loadProfile()
+    loadLesson()
   }, [])
 
  
@@ -57,19 +58,30 @@ export default function ShowProfile() {
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>oopp! cant update info</Text>
+        <Text>oopp! can`t get info</Text>
       </SafeAreaView>
     )
   }
 
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{profile.username}</Text>
-      <Text>{profile.description}</Text>
-      <Text>{profile.email}</Text>
-      <Text>{profile.photo}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+     <FlatList
+       style={styles.list}
+       data={lesson}
+       renderItem={({ item }) => (
+        <View>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text>{item.photo}</Text>
+          <Text>{item.category}</Text>
+          <Text>{item.teacher}</Text>
+        </View>
+        
+      )}
+      keyExtractor={item => `${item._id}`} 
+    />
+    <StatusBar style="auto" /> 
+  </SafeAreaView>
   );
 }
 
