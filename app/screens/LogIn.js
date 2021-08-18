@@ -5,8 +5,7 @@ import ModalLogIn from '../components/teacherMember/modalLogIn';
 import ModalRegister from '../components/teacherMember/modalRegister';
 
 
-const image = { uri: "https://reactjs.org/logo-og.png" };
-
+const image = { uri: "https://res.cloudinary.com/evollve-sas/image/upload/v1629224085/14744313464368656296_vcvlg7.jpg" };
 
 export default function LogIn() {
   <View style={styles.containerBack}>
@@ -19,11 +18,13 @@ export default function LogIn() {
     source={image} 
     resizeMode="cover" 
     style={styles.image}>
-    <Text style={styles.text}>Inside</Text>
+    <Text style={styles.text}>OM</Text>
   
-      <Text>Welcome al app</Text>
-      <ModalRegister />
+     <View style={styles.container}>
+     <ModalRegister />
       <ModalLogIn />
+     </View>
+      
       <StatusBar style="auto" />
       </ImageBackground>
     </View>
@@ -33,13 +34,10 @@ export default function LogIn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  containerBack: {
-    flex: 1,
+    //backgroundColor: "#fff",
+    //alignItems: "center",
+    //justifyContent: "center",
+    
   },
   image: {
     flex: 1,
@@ -51,7 +49,6 @@ const styles = StyleSheet.create({
     lineHeight: 84,
     fontWeight: "bold",
     textAlign: "center",
-    backgroundColor: "#000000c0"
   }
 });
 
