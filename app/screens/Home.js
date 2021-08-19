@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StatusBar, StyleSheet, Button, SafeAreaView } from 'react-native'
+import { View, Text, StatusBar, StyleSheet, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import ShowAllLessons from '../components/Lesson/showAllLessons';
 import CardsCategory from '../components/cardsCategorys';
@@ -12,15 +12,12 @@ export default function Home() {
   return (
    
     <View style={styles.container}>
-      <Text>Home</Text>
       <View style={styles.fixToText}>
-       <View  
-          style={{ margin: 10, flex: 0.5 }}>
+       <View  style={{ margin: 10, flex: 0.5 }}>
          <Button
          title="Profile"
          onPress={() => navigation.navigate('Profile' )} 
-         />   
-         
+         />          
           </View>       
          <View style={{ margin: 10, flex: 0.5 }}>
           <Button
@@ -28,7 +25,6 @@ export default function Home() {
           onPress={() => navigation.navigate('Lessons')}/>
          </View>       
       </View>
-      <CardsCategory/>
       <CardsCategory/>
       <ShowAllLessons/>
       <StatusBar style="auto" />

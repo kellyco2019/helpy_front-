@@ -78,15 +78,19 @@ export default function ShowAllLessons() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width:250,
     backgroundColor: "#FFFFFF",
     alignItems: 'center',
     justifyContent: 'center',
   },
   list: {
     paddingHorizontal: 10,
+    width: 380,
+    textAlign:"center",
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold'
   }
 });
+
