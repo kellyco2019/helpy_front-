@@ -6,7 +6,7 @@ import ShowAllLessons from '../components/Lesson/showAllLessons';
 export default function Lessons() {
   return (
     <View style={styles.container}>
-      <Text>Sesions</Text>
+     
     <ShowAllLessons/>
       <StatusBar style="auto" />
     </View>

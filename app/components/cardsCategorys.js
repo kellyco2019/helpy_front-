@@ -1,61 +1,108 @@
 import React from "react";
-import { View , TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { marginBottom } from "styled-system";
 
 export default function CardsCategory() {
- 
+
   const navigation = useNavigation()
 
-    function handleSubmitOne() {
-      console.log('hola parce')
-      navigation.navigate('Category', {
-        _category: 'retos'
-      })
-    }
+  function handleSubmitOne() {
 
-    function handleSubmitTwo() {
-        console.log('que mas?')
-        navigation.navigate('Category', {
-          _category: 'gente fuerte'
-        })
-    }
+    navigation.navigate('Category', {
+      _category: 'retos'
+    })
+  }
 
-    function handleSubmitTree() {
-      console.log('que mas?')
-      navigation.navigate('Category', {
-        _category: 'gente_triste'
-      })
-    }
+  function handleSubmitTwo() {
+   
+    navigation.navigate('Category', {
+      _category: 'gente fuerte'
+    })
+  }
 
+  function handleSubmitTree() {
   
+    navigation.navigate('Category', {
+      _category: 'gente_triste'
+    })
+  }
+
+
+  function handleSubmitFour() {
+  
+    navigation.navigate('Category', {
+      _category: 'Mindfullness'
+    })
+  }
+
   return (
-        <View
+    <View
+      style={{
+        flexDirection: "row",
+        padding: 5,
+        marginBottom: 30
+      }}
+    >
+      <TouchableOpacity onPress={handleSubmitOne}>
+       
+          <Image
+            style={{
+              width: 80,
+              height: 80,
+              margin: 10,
+
+            }} 
+            source={{
+              uri: 'https://res.cloudinary.com/evollve-sas/image/upload/v1629329188/Helpy/38_f11fmq.png',
+            }}
+          />
+     
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleSubmitTwo}>
+     
+          <Image
+            style={{
+              width: 80,
+              height: 80,
+              margin: 10,
+            }}
+            source={{
+              uri: 'https://res.cloudinary.com/evollve-sas/image/upload/v1629329188/Helpy/36_j8yaxy.png',
+            }}
+          />
+       
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleSubmitTree}>
+       
+          <Image
+            style={{
+              width: 80,
+              height: 80,
+              margin: 10,
+            }}
+            source={{
+              uri: 'https://res.cloudinary.com/evollve-sas/image/upload/v1629329188/Helpy/37_aydsf9.png',
+            }}
+          />
+       
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleSubmitFour}>
+      
+        <Image
           style={{
-             flexDirection: "row",
-            padding: 5
+            width: 80,
+            height: 80,
+            margin: 10,
           }}
-        >
-       
-<TouchableOpacity onPress={handleSubmitOne}>
-  <View style={{ backgroundColor: "red", width: 80,
-            height: 80, margin: 10, flex: 1 }}
-            />
-</TouchableOpacity>
-<TouchableOpacity onPress={handleSubmitTwo}>
-          <View style={{ backgroundColor: "green",width: 80,
-            height: 80,  margin: 10 ,flex: 1 }} 
-            />
-</TouchableOpacity>
+          source={{
+            uri: 'https://res.cloudinary.com/evollve-sas/image/upload/v1629329188/Helpy/35_d9lta8.png',
+          }}
+        />
+     
+      </TouchableOpacity>
+    </View>
 
-
-<TouchableOpacity onPress={handleSubmitTree}>
-          <View style={{ backgroundColor: "yellow",width: 80,
-            height: 80,  margin: 10 ,flex: 1, }} 
-            />
-</TouchableOpacity>
-          <View style={{ backgroundColor: "blue",width: 70,
-            height: 80,  margin: 10 ,flex: 1 }} />
-        </View>
-       
-      );
+  );
 };

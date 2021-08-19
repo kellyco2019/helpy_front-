@@ -1,84 +1,73 @@
-import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
-import FormComments from "./formComments";
+import React , { useState } from "react"
+import { Modal, Button, Input, Center, NativeBaseProvider } from "native-base"
+
 
 
 export default function ModalCreateComments() {
-  const [modalVisible, setModalVisible] = useState(false);
+  
+  
+  const [modalVisible, setModalVisible] = useState(false)
+  const [comments, setComments] = useState('')
+  const initialRef = useState(null)
+  const finalRef = useState(null)
+  
+     
+  function handleSubmit() {
+    
+    console.log({ comments })
+}
+  
   return (
-    <View style={styles.centeredView}>
+    
+    <>
+    <NativeBaseProvider>
+    <Center flex={1}>
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}s
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+        isOpen={modalVisible}
+        onClose={setModalVisible}
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+      >
+        <Modal.Content>
+          <Modal.CloseButton />
+          <Modal.Header>Give your opnion about this lesson</Modal.Header>
+          <Modal.Body>
+            The best event ever!!!
+            <Input
+              mt={4}
+              ref={initialRef}
+              placeholder="Add your Comments here"
+            />
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group variant="ghost" space={2}>
+              <Button>SAVE</Button>
+              <Button
+                onPress={() => {
+                  setModalVisible(!modalVisible)
+                }}
+                colorScheme="secondary"
+              >
+                CLOSE
+              </Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+      <Button
+        onPress={() => {
+          setModalVisible(!modalVisible)
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Comments</Text>
-            <FormComments/>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Close</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Add your Comments</Text>
-      </Pressable>
-    </View>
-  );
+       Add Comment
+      </Button>
+       </Center>
+      </NativeBaseProvider>
+     
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
+
+
