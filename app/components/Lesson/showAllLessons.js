@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
+import { StyleSheet,Image, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
 import Lesson from '../../screens/Lesson';
@@ -21,7 +21,7 @@ export default function ShowAllLessons() {
       url: '/lessons/home'
     })
       .then(({ data }) => {
-        console.log(data)
+        console.log('lessonsssss:', data)
         setLessons(data)
       })
       .catch(() => {
@@ -51,28 +51,36 @@ export default function ShowAllLessons() {
 
   return (
     <SafeAreaView style={styles.container}>
-     <FlatList
-       style={styles.list}
-       data={lessons}
-       renderItem={({ item }) => (
-        <View>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text>{item.photo}</Text>
-          <Text>{item.category}</Text>
-          <Text>{item.teacher}</Text>
-          <Button
-              title="View More"
+      <FlatList
+        style={styles.list}
+        data={lessons}
+        renderItem={({ item }) => (
+          <View>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text>{item.image}</Text>
+            <Image
+              style={styles.image}
+              //source={ item.image }// url
+              source={{ uri: item.image }}
+            />
+            <Text>{item.category}</Text>
+            <Text>{item.teacher}</Text>
+            <Button
+              color="#f194ff"
+
+              title="GO TO EVENT"
               onPress={() => navigation.navigate('Lesson', {
                 _id: item._id,
                 title: item.title,
+
               })}
-            /> 
-        </View>
-      )}
-      keyExtractor={item => `${item._id}`} 
-    />
-    <StatusBar style="auto" /> 
-  </SafeAreaView>
+            />
+          </View>
+        )}
+        keyExtractor={item => `${item._id}`}
+      />
+      <StatusBar style="auto" />
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -91,6 +99,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 400,
+    height: 300,
   }
 });
 

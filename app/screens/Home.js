@@ -15,12 +15,15 @@ export default function Home() {
       <View style={styles.fixToText}>
        <View  style={{ margin: 10, flex: 0.5 }}>
          <Button
+      
+         color="#f194ff"
          title="Profile"
          onPress={() => navigation.navigate('Profile' )} 
          />          
           </View>       
          <View style={{ margin: 10, flex: 0.5 }}>
           <Button
+          color="#f194ff"
           title="Lesson"
           onPress={() => navigation.navigate('Lessons')}/>
          </View>       

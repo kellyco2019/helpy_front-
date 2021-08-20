@@ -10,6 +10,7 @@ import Lesson from "./app/screens/Lesson";
 import Profile from "./app/screens/Profile";
 import Category from "./app/screens/Category";
 import MyLesson from "./app/screens/MyLesson";
+import NewLesson from "./app/screens/NewLesson";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Category" component={Category} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="MyLesson" component={MyLesson} />
+        <Stack.Screen name="NewLesson" component={NewLesson} />
       </Stack.Navigator>
     </NavigationContainer>
   );
