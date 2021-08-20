@@ -14,19 +14,24 @@ export default function Profile() {
     <View style={styles.container}>
       <Text>Member Profile</Text>
       <View style={styles.fixToText}>
-        <View style={{ margin: 10, flex: 0.5 }}>
+       <View  style={{ margin: 10, flex: 0.5 }}>
+         <Button
+         color="#f194ff"  
+         title="My Lessons"
+         onPress={() => navigation.navigate('MyLesson' )} 
+         />          
+          </View>       
+         <View style={{ margin: 10, flex: 0.5 }}>
           <Button
-            color="#f194ff"
-            title="My Lessons"
-            onPress={() => navigation.navigate('MyLesson' )} 
-          />
-        </View>
+          color="#f194ff"
+           title="Create Event"
+          onPress={() => navigation.navigate('NewLesson')}/>
+         </View>       
       </View>
-
       <ShowProfile />
       <ModalUpdateProfile />
       <ModalUpdatePhotoProfile />
-      <ModalCreateLesson />
+  
       <StatusBar style="auto" />
     </View>
   );
@@ -40,8 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   fixToText: {
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 40
   },
+
 });

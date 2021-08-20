@@ -26,18 +26,15 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as ImagePicker from "expo-image-picker";
+
 
 export default function ModalCreateLesson() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [onChangeValue, setOnChangeValue] = useState(10);
-  const [onChangeEndValue, setOnChangeEndValue] = useState(20);
+  const [onChangeEndValue, setOnChangeEndValue] = useState(60);
   const [terms, setTerms] = useState(false);
-  const [cameraRollPermission, setCameraRollPermission] = useState("denied");
-  const [cameraPermission, setCameraPermission] = useState(false);
-  const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const route = useRoute();
@@ -46,39 +43,6 @@ export default function ModalCreateLesson() {
   const initialRef = useState(null);
   const finalRef = useState(null);
 
-  useEffect(() => {
-    ImagePicker.requestMediaLibraryPermissionsAsync().then(({ status }) =>
-      setCameraRollPermission(status)
-    );
-
-    ImagePicker.requestCameraPermissionsAsync().then(({ status }) =>
-      setCameraPermission(status === "granted")
-    );
-  }, []);
-
-  async function handlePickImage() {
-    const data = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-
-    if (!data.cancelled) {
-      setImage(data);
-    }
-  }
-
-  async function handleTakePicture() {
-    const data = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-
-    if (!data.cancelled) {
-      setImage(data);
-    }
-  }
 
   async function handleSubmit() {
     setLoading(true);
@@ -98,6 +62,8 @@ export default function ModalCreateLesson() {
         navigation.navigate("Lesson", {
           _id: data._id,
           title: data.title,
+          description:data.description,
+          category:data.category
         });
       })
       .catch((e) => {
@@ -163,31 +129,13 @@ export default function ModalCreateLesson() {
                   endIcon: <CheckIcon size={4} />,
                 }}
               >
-                <Select.Item label="Mindfullness" value="mf" />
-                <Select.Item label="Yoga" value="yo" />
-                <Select.Item label="Stretching" value="st" />
-                <Select.Item label="Gentle" value="gt" />
+                <Select.Item label="Mindfullness" value="Mindfullness" />
+                <Select.Item label="Yoga" value="Yoga" />
+                <Select.Item label="Stretching" value="Stretching" />
+                <Select.Item label="Gentle" value="Gentle" />
         
               </Select>
-              <Stack space={5} alignItems="center">
-             
-                {cameraPermission ? (
-                  <Button size={10} title="Take a Picture" onPress={handleTakePicture} />
-                ) : (
-                  <Text>Please allow the app to access camera in your settings</Text>
-                )}
-                {cameraRollPermission === "granted" ? (
-                  <Button title="Pick an Image" onPress={handlePickImage} />
-                
-                ) : (
-                  <Text>Please allow the app to access photos in your settings</Text>
-                )}
-                {!!image && (
-                  <Image style={styles.image} source={{ uri: image.uri }} />
-                )}
-                
-           
-              </Stack>
+            
               <Text>How long is video?</Text>
               <Stack mx={5} space={4} alignItems="center" w="100%">
                 <Text>{onChangeValue}</Text>
@@ -216,9 +164,7 @@ export default function ModalCreateLesson() {
             </Modal.Body>
             <Modal.Footer>
               <Button.Group variant="ghost" space={2}>
-
-
-           
+          
                 <Button onPress={handleSubmit}>CREATE EVENT</Button>
                 <Button
                   onPress={() => {
@@ -259,7 +205,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
+      width: 250,
       height: 2,
     },
     shadowOpacity: 0.25,

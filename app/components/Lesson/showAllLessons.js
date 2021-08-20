@@ -61,10 +61,13 @@ export default function ShowAllLessons() {
           <Text>{item.category}</Text>
           <Text>{item.teacher}</Text>
           <Button
-              title="View More"
+              color="#f194ff"
+              
+              title="GO TO EVENT"
               onPress={() => navigation.navigate('Lesson', {
                 _id: item._id,
                 title: item.title,
+
               })}
             /> 
         </View>
