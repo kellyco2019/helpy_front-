@@ -1,26 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Image,  Text,  StyleSheet, SafeAreaView, ActivityIndicator, Button } from 'react-native'
+import { View, Button, Image, Text, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native'
+import ModalCreateLesson from '../components/Lesson/modalCreateLesson';
 import * as ImagePicker from 'expo-image-picker'
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  Input,
-  Select,
-  CheckIcon,
-  Switch, 
-  HStack,  
-  NativeBaseProvider,  
-} from "native-base";
 
 export default function NewLesson() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [time, setTime] = useState('');
-  const [terms, setTerms] = useState(false);
   const [cameraRollPermission, setCameraRollPermission] = useState('denied')
   const [cameraPermission, setCameraPermission] = useState(false)
   //const [file, setFile] = useState(null)
@@ -41,6 +29,7 @@ export default function NewLesson() {
       .then(({ status }) => setCameraPermission(status === 'granted'))
   }, [])
 
+
   // function selectFile(e) {
   //   setFile(e.target.files[0])
   // }
@@ -51,7 +40,7 @@ export default function NewLesson() {
       allowsEditing: true,
       aspect: [4, 3],
     })
-console.log(data)
+
     if(!data.cancelled) {
       setImage(data)
     }
@@ -70,40 +59,30 @@ console.log(data)
   }
 
   async function handleSubmit(e) {
-    //e.preventDefault()
+    e.preventDefault()
     
     const data = new FormData()
-    
-    data.append('title', title)
-    data.append('description', description)
-    data.append('category', category)
-    data.append('time', time)
-    data.append('terms', terms)
+
     if(image) {
-      data.append('image', {uri: image.uri, name:"image", type:"image/jpg"})
+      data.append('photo', image, image.name)
     }
-    //vide/mp4
     setLoading(true);
     const token = await AsyncStorage.getItem("token");
     console.log("soylafototoken", token);
      axios({
       method: "POST",
       baseURL: "http://192.168.20.21:8000",
-      url: "lessons/teacherProfile",//reviisar la ruta y el controlador 
-      data, //{ title, description, category, image },
+      url: "/lessons/imagenLesson/",//reviisar la ruta y el controlador 
+      data,
       headers: {
+        'Content-Type': 'multipart/form-data',
          Authorization: `token ${token}`,
-         'Content-Type': 'multipart/form-data',
       }
     })
     .then(({ data }) => {
       console.log(data);
       navigation.navigate("Lesson", {
-        _id: data._id,
-        title: data.title,
-        description:data.description,
-        category:data.category,
-        image: data.image
+        photo: data.photo
       });
     })
     .catch((e) => {
@@ -114,6 +93,9 @@ console.log(data)
       setLoading(false);
     });
   }
+
+
+
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -128,57 +110,10 @@ console.log(data)
       </SafeAreaView>
     );
   }
-
   return (
-    
     <View style={styles.container}>
-      <NativeBaseProvider>
-      <Text>Create New Event</Text>                 
-          <Text>Title</Text>
-              <Input
-                placeholder="title"
-                onChangeText={(value) => setTitle(value)}
-                value={title}
-              />
-              <Text>Description</Text>
-              <Input
-                placeholder="description"
-                onChangeText={(value) => setDescription(value)}
-                value={description}
-              />
-              <Text>Category</Text>
-              
-               <Select
-                selectedValue={category}
-                minWidth={200}
-                accessibilityLabel="Pick one"
-                placeholder="What your event is about"
-                onValueChange={(itemValue) => setCategory(itemValue)}
-                _selectedItem={{
-                  bg: "cyan.600",
-                  endIcon: <CheckIcon size={4} />,
-                }}
-              >
-                <Select.Item label="Mindfullness" value="Mindfullness" />
-                <Select.Item label="Yoga" value="Yoga" />
-                <Select.Item label="Stretching" value="Stretching" />
-                <Select.Item label="Gentle" value="Gentle" />
-        
-              </Select>
-            
-              <Text>How long is video?</Text>
-              <Input
-                placeholder="min 10 max 30 min"
-                onChangeText={(value) => setTime(value)}
-                value={time}
-              />
-               <HStack alignItems="center" space={8}>
-              <Text fontSize="lg">Acept terms</Text>
-      <Switch onValueChange={(value) => setTerms(value)} value={terms} />
-    </HStack>
-             
-    </NativeBaseProvider> 
-    
+      <Text>Create New Event</Text>
+      <ModalCreateLesson/>
       <View style={styles.container}>
       {cameraPermission ? (
         <Button
@@ -206,14 +141,14 @@ console.log(data)
       )}
       <Button onPress={handleSubmit}
       color="#f194ff"
-      title="Create Event"
+      title="Save Picture"
       ></Button>
       <StatusBar style="auto" />
     </View>
-   
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StatusBar, StyleSheet } from 'react-native'
+import { View, Text, StatusBar, StyleSheet, Image } from 'react-native'
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native'
 
@@ -23,10 +23,14 @@ export default function ShowOneLesson() {
     <View style={styles.container}>
       <Text style={styles.title}>{lesson.title}</Text>
           <Text>{lesson.description}</Text>
-          <Text>{lesson.photo}</Text>
+          
+          <Image
+            style={styles.image}
+            source={{ uri: lesson.image }}
+          
+          />
           <Text>{lesson.category}</Text>
-          <Text>{lesson.video}</Text>
-          <Text>{lesson.tags}</Text>
+        
       <StatusBar style="auto" />
     </View>
   );
@@ -42,5 +46,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 400,
+    height: 300,
   }
 });
