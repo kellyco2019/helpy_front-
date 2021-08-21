@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useRoute } from '@react-navigation/native'
-import { StyleSheet, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
+import { StyleSheet, Image, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function FilterCategorys() {
@@ -62,12 +62,18 @@ export default function FilterCategorys() {
        renderItem={({ item }) => (
         <View>
           <Text style={styles.title}>{item.title}</Text>
-          <Text>{item.photo}</Text>
+          <Image
+              style={styles.image}            
+              source={{ uri: item.image }}
+            />
+          <Text>{item.description}</Text>
           <Text>{item.category}</Text>
-          <Text>{item.teacher}</Text>
+          <Text>{item.time}</Text>
+          <Text>{item.username}</Text>
           <Button
-              title="View More"
-              onPress={() => navigation.navigate('Lesson', {
+              title="Go to Event"
+              color="#f194ff"
+              onPress={() => navigation.navigate('Event', {
                 _id: item._id,
                 title: item.title,
               })}
@@ -91,7 +97,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 400,
+    height: 300,
   }
 });

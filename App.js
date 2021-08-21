@@ -20,12 +20,12 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LogIn} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Lessons" component={Lessons} />
-        <Stack.Screen name="Lesson" component={Lesson} />
+        <Stack.Screen name='Events' component={Lessons} />
+        <Stack.Screen name="Event" component={Lesson} />
         <Stack.Screen name="Category" component={Category} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="MyLesson" component={MyLesson} />
-        <Stack.Screen name="NewLesson" component={NewLesson} />
+        <Stack.Screen name='My Events' component={MyLesson} />
+        <Stack.Screen name="New Event" component={NewLesson} />
       </Stack.Navigator>
     </NavigationContainer>
   );

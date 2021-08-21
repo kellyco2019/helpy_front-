@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Image,  Text,  StyleSheet, SafeAreaView, ActivityIndicator, Button } from 'react-native'
+import { View, Image, Text,  StyleSheet, SafeAreaView, ScrollView, ActivityIndicator, Button } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
@@ -23,7 +23,6 @@ export default function NewLesson() {
   const [terms, setTerms] = useState(false);
   const [cameraRollPermission, setCameraRollPermission] = useState('denied')
   const [cameraPermission, setCameraPermission] = useState(false)
-  //const [file, setFile] = useState(null)
   const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -41,9 +40,6 @@ export default function NewLesson() {
       .then(({ status }) => setCameraPermission(status === 'granted'))
   }, [])
 
-  // function selectFile(e) {
-  //   setFile(e.target.files[0])
-  // }
 
   async function handlePickImage() {
     const data = await ImagePicker.launchImageLibraryAsync({
@@ -51,7 +47,7 @@ export default function NewLesson() {
       allowsEditing: true,
       aspect: [4, 3],
     })
-console.log(data)
+
     if(!data.cancelled) {
       setImage(data)
     }
@@ -70,7 +66,7 @@ console.log(data)
   }
 
   async function handleSubmit(e) {
-    //e.preventDefault()
+  
     
     const data = new FormData()
     
@@ -82,15 +78,18 @@ console.log(data)
     if(image) {
       data.append('image', {uri: image.uri, name:"image", type:"image/jpg"})
     }
+
+    // if(video) {
+    //   data.append('video', {uri: video.uri, name:"video", type:"vide/mp4"})
+    // }
     //vide/mp4
     setLoading(true);
     const token = await AsyncStorage.getItem("token");
-    console.log("soylafototoken", token);
      axios({
       method: "POST",
       baseURL: "http://192.168.20.21:8000",
-      url: "lessons/teacherProfile",//reviisar la ruta y el controlador 
-      data, //{ title, description, category, image },
+      url: "lessons/teacherProfile",
+      data,
       headers: {
          Authorization: `token ${token}`,
          'Content-Type': 'multipart/form-data',
@@ -98,7 +97,7 @@ console.log(data)
     })
     .then(({ data }) => {
       console.log(data);
-      navigation.navigate("Lesson", {
+      navigation.navigate("Event", {
         _id: data._id,
         title: data.title,
         description:data.description,
@@ -131,6 +130,7 @@ console.log(data)
 
   return (
     
+  <ScrollView style={styles.scrollView}>
     <View style={styles.container}>
       <NativeBaseProvider>
       <Text>Create New Event</Text>                 
@@ -212,15 +212,23 @@ console.log(data)
     </View>
    
     </View>
+    </ScrollView>
+   
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+  //   flex: 1,
+  //   backgroundColor: '#fff',
+  //alignItems: 'center',
+  justifyContent: 'center',
+  },
+  scrollView: {
+    
+    marginHorizontal: 10,
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   image: {
     width: 400,

@@ -8,7 +8,7 @@ import ShowOneLesson from '../components/Lesson/showOneLesson';
 export default function Lesson() {
   return (
     <View style={styles.container}>
-      <Text>Session</Text>
+      <Text>Event</Text>
       <ShowOneLesson/>
       <ModalCreateComments/>
       <StatusBar style="auto" />

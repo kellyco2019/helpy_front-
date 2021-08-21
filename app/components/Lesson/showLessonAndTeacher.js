@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, FlatList } from 'react-native'
+import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, FlatList, Image } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,7 +8,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ShowLessonAndTeacher() {
   const [lesson, setLesson] = useState([])
-  console.log("lessonnnnnnnn", lesson)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
@@ -17,10 +16,7 @@ export default function ShowLessonAndTeacher() {
   useEffect(() => {
     async function loadLesson() {
       setLoading(true)
-      //const getData = async () => await AsyncStorage.getItem('token') 
       const token = await getData()
-      console.log('el mismo token', token)
-      console.log('data', getData)
       axios({
         method: 'GET',
         baseURL: 'http://192.168.20.21:8000',
@@ -31,15 +27,12 @@ export default function ShowLessonAndTeacher() {
       })
         .then(({ data }) => {
           setLesson(data)
-          console.log(data)
         })
         .catch((error) => {
           setError(true)
-          console.log(error)
         })
         .finally(() => {
           setLoading(false)
-          console.log('ya pase por aqui', token)
         })
 
     }
@@ -72,9 +65,12 @@ export default function ShowLessonAndTeacher() {
        renderItem={({ item }) => (
         <View>
           <Text style={styles.title}>{item.title}</Text>
-          <Text>{item.photo}</Text>
+          <Image
+              style={styles.image}
+              source={{ uri: item.image }}
+            />
           <Text>{item.category}</Text>
-          <Text>{item.teacher}</Text>
+          <Text>{item.teacher.usename}</Text>
         </View>
         
       )}
@@ -93,7 +89,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold'
+  },
+  image: {
+    width: 400,
+    height: 300,
   }
 });

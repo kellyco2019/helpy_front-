@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet,Image, Text, View, FlatList, SafeAreaView, ActivityIndicator, Button } from 'react-native';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
-import Lesson from '../../screens/Lesson';
+
 
 export default function ShowAllLessons() {
 
@@ -21,7 +21,6 @@ export default function ShowAllLessons() {
       url: '/lessons/home'
     })
       .then(({ data }) => {
-        console.log('lessonsssss:', data)
         setLessons(data)
       })
       .catch(() => {
@@ -48,7 +47,6 @@ export default function ShowAllLessons() {
     )
   }
 
-
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -57,19 +55,16 @@ export default function ShowAllLessons() {
         renderItem={({ item }) => (
           <View>
             <Text style={styles.title}>{item.title}</Text>
-            <Text>{item.image}</Text>
             <Image
-              style={styles.image}
-              //source={ item.image }// url
+              style={styles.image}          
               source={{ uri: item.image }}
             />
             <Text>{item.category}</Text>
-            <Text>{item.teacher}</Text>
+            <Text>{item.teacher.username}</Text>
             <Button
               color="#f194ff"
-
               title="GO TO EVENT"
-              onPress={() => navigation.navigate('Lesson', {
+              onPress={() => navigation.navigate('Event', {
                 _id: item._id,
                 title: item.title,
 
