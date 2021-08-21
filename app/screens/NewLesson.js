@@ -47,7 +47,6 @@ export default function NewLesson() {
       allowsEditing: true,
       aspect: [4, 3],
     })
-
     if(!data.cancelled) {
       setImage(data)
     }
@@ -213,7 +212,6 @@ export default function NewLesson() {
    
     </View>
     </ScrollView>
-   
   );
 }
 
@@ -224,8 +222,7 @@ const styles = StyleSheet.create({
   //alignItems: 'center',
   justifyContent: 'center',
   },
-  scrollView: {
-    
+  scrollView: {  
     marginHorizontal: 10,
     flex: 1,
     backgroundColor: '#fff',

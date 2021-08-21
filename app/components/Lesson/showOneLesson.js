@@ -28,6 +28,7 @@ export default function ShowOneLesson() {
      
       <Text style={styles.title}>{lesson.title}</Text>
           <Text>{lesson.description}</Text>
+          
           <Image
             style={styles.image}
             source={{ uri: lesson.image }}
