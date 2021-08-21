@@ -17,15 +17,24 @@ export default function Profile() {
        <View  style={{ margin: 10, flex: 0.5 }}>
          <Button
          color="#f194ff"  
+<<<<<<< HEAD
+         title="My Events"
+         onPress={() => navigation.navigate('My Events')} 
+=======
          title="My Lessons"
          onPress={() => navigation.navigate('MyLesson' )} 
+>>>>>>> develop
          />          
           </View>       
          <View style={{ margin: 10, flex: 0.5 }}>
           <Button
           color="#f194ff"
            title="Create Event"
+<<<<<<< HEAD
+          onPress={() => navigation.navigate("New Event")}/>
+=======
           onPress={() => navigation.navigate('NewLesson')}/>
+>>>>>>> develop
          </View>       
       </View>
       <ShowProfile />

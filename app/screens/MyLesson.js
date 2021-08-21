@@ -7,7 +7,7 @@ import ShowLessonAndTeacher from '../components/Lesson/showLessonAndTeacher';
 export default function MyLesson() {
   return (
     <View style={styles.container}>
-      <Text> My Session</Text>
+      <Text> My Events</Text>
       <ShowLessonAndTeacher/>
       <StatusBar style="auto" />
     </View>

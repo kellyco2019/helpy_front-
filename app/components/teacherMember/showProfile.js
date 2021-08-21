@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, Image, Iframe } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function ShowProfile() {
 
@@ -67,7 +68,11 @@ export default function ShowProfile() {
       <Text style={styles.title}>{profile.username}</Text>
       <Text>{profile.description}</Text>
       <Text>{profile.email}</Text>
-      <Text>{profile.photo}</Text>
+      <Image
+            style={styles.image}
+            source={{ uri: profile.image }}
+          
+          />
       <StatusBar style="auto" />
     </View>
   );
@@ -75,7 +80,7 @@ export default function ShowProfile() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -83,5 +88,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold'
+  }, 
+  image: {
+    width: 400,
+    height: 300,
   }
 });
