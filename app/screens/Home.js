@@ -24,13 +24,8 @@ export default function Home() {
          <View style={{ margin: 10, flex: 0.5 }}>
           <Button
           color="#f194ff"
-<<<<<<< HEAD
           title="Events"
           onPress={() => navigation.navigate('Events')}/>
-=======
-          title="Lesson"
-          onPress={() => navigation.navigate('Lessons')}/>
->>>>>>> develop
          </View>       
       </View>
       <CardsCategory/>
