@@ -32,7 +32,7 @@ export default function ShowProfile() {
       console.log('data', getData)
       axios({
         method: 'GET',
-        baseURL: 'http://192.168.20.21:8000',
+        baseURL: process.env.REACT_APP_SERVER_URL || 'http://192.168.20.21:8000',
         url: '/teacher/',
         headers: {
           Authorization: `Token ${token}`

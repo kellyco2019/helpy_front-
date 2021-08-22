@@ -26,7 +26,7 @@ async function handleSubmit() {
     console.log('soyeltoken', token)
     axios({
       method: 'PUT',
-      baseURL: 'http://192.168.20.21:8000',
+      baseURL: process.env.REACT_APP_SERVER_URL || 'http://192.168.20.21:8000',
       url: '/lessons/',
       data: { title, description, category, time },
       headers: {

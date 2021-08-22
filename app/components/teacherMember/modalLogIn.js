@@ -35,7 +35,7 @@ export default function ModalLogIn() {
     setLoading(true);
     axios({
       method: "POST",
-      baseURL: "http://192.168.20.21:8000",
+      baseURL: process.env.REACT_APP_SERVER_URL || 'http://192.168.20.21:8000',
       url: "/teacher/signin",
       data: { email, password },
     })
