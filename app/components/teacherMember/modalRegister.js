@@ -125,6 +125,8 @@ export default function ModalRegister() {
           </Modal.Content>
         </Modal>
         <Button
+          size="md"
+          colorScheme="secondary"
           onPress={() => {
             setModalVisible(!modalVisible);
           }}

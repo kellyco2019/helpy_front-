@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Image, Text, StyleSheet, SafeAreaView, ScrollView, ActivityIndicator, Button } from 'react-native'
+import { View, Image,  StyleSheet, SafeAreaView, ScrollView, ActivityIndicator } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
-  Input,
+  Input, 
+  Heading,
   Select,
   CheckIcon,
   Switch,
   HStack,
-  NativeBaseProvider,
+  NativeBaseProvider,Text,
+  Button,
 } from "native-base";
+
+
 
 export default function NewLesson() {
   const [title, setTitle] = useState("");
+  const [member, setMember] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [time, setTime] = useState('');
@@ -81,6 +86,7 @@ export default function NewLesson() {
     const data = new FormData()
 
     data.append('title', title)
+    data.append('member', member)
     data.append('description', description)
     data.append('category', category)
     data.append('time', time)
@@ -110,6 +116,7 @@ export default function NewLesson() {
         navigation.navigate("Event", {
           _id: data._id,
           title: data.title,
+          member: data.member,
           description: data.description,
           category: data.category,
           image: data.image
@@ -143,29 +150,39 @@ export default function NewLesson() {
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         <NativeBaseProvider>
-          <Text>Create New Event</Text>
+          <Heading>Create New Event</Heading>
+          <Text></Text>
           <Text>Title</Text>
           <Input
-            placeholder="title"
+            placeholder="What is the name of the event?"
             onChangeText={(value) => setTitle(value)}
             value={title}
           />
+          <Text></Text>
           <Text>Description</Text>
           <Input
-            placeholder="description"
+            placeholder="How would you describe the event?"
             onChangeText={(value) => setDescription(value)}
             value={description}
           />
+          <Text></Text>
+          <Text>Member Name</Text>
+          <Input
+            placeholder="How do you want to be recognized"
+            onChangeText={(value) => setMember(value)}
+            value={member}
+          />
+          <Text></Text>
           <Text>Category</Text>
 
           <Select
             selectedValue={category}
             minWidth={200}
             accessibilityLabel="Pick one"
-            placeholder="What your event is about"
+            placeholder="Choose a category"
             onValueChange={(itemValue) => setCategory(itemValue)}
             _selectedItem={{
-              bg: "cyan.600",
+              bg: "secondary.600",
               endIcon: <CheckIcon size={4} />,
             }}
           >
@@ -175,40 +192,61 @@ export default function NewLesson() {
             <Select.Item label="Gentle" value="Gentle" />
 
           </Select>
-
+          <Text></Text>
+          <Text fontSize="md">Minutes</Text>
+          <Input
+            placeholder="How long is the video?"
+            onChangeText={(value) => setTime(value)}
+            value={time}
+          />
+           
           <HStack alignItems="center" space={8}>
-            <Text fontSize="lg">Acept terms</Text>
+            <Text fontSize="md">Acept terms</Text>
             <Switch onValueChange={(value) => setTerms(value)} value={terms} />
           </HStack>
 
         </NativeBaseProvider>
+        <Text> </Text>
         <View style={styles.container}>
           {cameraRollPermission === 'granted' ? (
             <Button
-              color="#f194ff"
-              title="Pick a Video"
+            size="sm"
+            variant="outline"
+              colorScheme="secondary" 
               onPress={handlePickVideo}
-            />
+              >
+             Pick a Video
+            </Button>
           ) : (
             <Text>Please allow the app to access photos in your settings</Text>
           )}
         </View>
+        <Text ></Text>
         <View style={styles.container}>
           {cameraPermission ? (
             <Button
-              color="#f194ff"
-              title="Take a Picture"
-              onPress={handleTakePicture}
-            />
+            size="sm"
+            variant="outline"
+            colorScheme="secondary" 
+            onPress={handleTakePicture}
+            >
+            Take a Picture
+            </Button>
+
           ) : (
             <Text>Please allow the app to access camera in your settings</Text>
           )}
+           <Text ></Text>
           {cameraRollPermission === 'granted' ? (
             <Button
-              color="#f194ff"
-              title="Pick an Image"
+            size="sm"
+              colorScheme="secondary" 
+              variant="outline"
               onPress={handlePickImage}
-            />
+              >
+              Pick an Image
+            </Button>
+            
           ) : (
             <Text>Please allow the app to access photos in your settings</Text>
           )}
@@ -218,10 +256,14 @@ export default function NewLesson() {
               source={{ uri: image.uri }}// url
             />
           )}
+             <Text ></Text>
           <Button onPress={handleSubmit}
-            color="#f194ff"
-            title="Create Event"
-          ></Button>
+         
+            size="md"
+            colorScheme="secondary" 
+          >
+            Create Event
+          </Button>
           <StatusBar style="auto" />
         </View>
       </View>
@@ -231,10 +273,12 @@ export default function NewLesson() {
 
 const styles = StyleSheet.create({
   container: {
-    //   flex: 1,
+       flex: 1,
     //   backgroundColor: '#fff',
     //alignItems: 'center',
     justifyContent: 'center',
+    width: 390,
+    textAlign: "center",
   },
   scrollView: {
     marginHorizontal: 10,

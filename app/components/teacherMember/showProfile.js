@@ -1,9 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, Image, Iframe } from 'react-native'
+import { StyleSheet, View,  SafeAreaView, ActivityIndicator, Image } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {
+  Text,
+  Button,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
+import { fontSize } from 'styled-system';
 
 export default function ShowProfile() {
 
@@ -67,7 +76,7 @@ export default function ShowProfile() {
     <View style={styles.container}>
       <Text style={styles.title}>{profile.username}</Text>
       <Text>{profile.description}</Text>
-      <Text>{profile.email}</Text>
+      <Text fontSize='md'> Email: {profile.email}</Text>
       <Image
             style={styles.image}
             source={{ uri: profile.image }}
@@ -84,11 +93,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 380,
+    //textAlign: "center",
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold'
   }, 
+ 
   image: {
     width: 400,
     height: 300,

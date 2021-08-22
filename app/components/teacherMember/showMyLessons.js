@@ -57,7 +57,11 @@ export default function ShowMyLessons() {
        data={lessons}
        renderItem={({ item }) => (
         <View>
+               
           <Text style={styles.title}>{item.title}</Text>
+          <Text>{item.description}</Text>
+          <Text>Type of Event: {item.category}</Text>
+          <Text> <Text bold>Minutes: </Text>{item.time}</Text>
           <Text>{item.photo}</Text>
           <Text>{item.category}</Text>
           <Text>{item.teacher}</Text>

@@ -10,22 +10,22 @@ const image = { uri: "https://res.cloudinary.com/evollve-sas/image/upload/v16292
 export default function LogIn() {
   <View style={styles.containerBack}>
 
-</View>
+  </View>
 
   return (
     <View style={styles.container}>
-    <ImageBackground 
-    source={image} 
-    resizeMode="cover" 
-    style={styles.image}>
-    <Text style={styles.text}>OM</Text>
-  
-     <View style={styles.container}>
-     <ModalRegister />
-      <ModalLogIn />
-     </View>
-      
-      <StatusBar style="auto" />
+      <ImageBackground
+        source={image}
+        resizeMode="cover"
+        style={styles.image}>
+        <Text style={styles.text}>OM</Text>
+
+        <View style={styles.container}>
+          <ModalRegister />
+          <ModalLogIn />
+        </View>
+
+        <StatusBar style="auto" />
       </ImageBackground>
     </View>
   );
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     //backgroundColor: "#fff",
     //alignItems: "center",
     //justifyContent: "center",
-    
+
   },
   image: {
     flex: 1,

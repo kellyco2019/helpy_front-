@@ -1,51 +1,89 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Alert, Modal, Pressable } from 'react-native';
-import UpdatePhotoProfile from './formUpdatePhotoProfile';
+import React, { useState } from "react";
+import {
+  Modal,
+  Button,
+  Input,
+  Text,
+  Center,
+  NativeBaseProvider,
+} from "native-base";
+import { StyleSheet, SafeAreaView, ActivityIndicator } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ModalUpdatePhotoProfile() {
+export default function ModalUpdateProfile() {
+ 
 
   const [modalVisible, setModalVisible] = useState(false);
+  const initialRef = useState(null);
+  const finalRef = useState(null);
+  function handleSubmit() {
+  }
 
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Edit Photo</Text>
-            <UpdatePhotoProfile/>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Close</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Update Photo</Text>
-      </Pressable>
-    </View>
+   
+        <Center flex={1}>
+          <Modal
+            size="lg"
+            isOpen={modalVisible}
+            onClose={setModalVisible}
+            initialFocusRef={initialRef}
+            finalFocusRef={finalRef}
+          >
+            <Modal.Content>
+              <Modal.CloseButton />
+              <Modal.Header>Update Photo Profile</Modal.Header>
+              <Modal.Body>
+              
+
+      <Text>Pick Photo</Text>
+      <Input
+        placeholder="Pick your best photo"
+        
+        
+      />
+
+    
+
+              </Modal.Body>
+              <Modal.Footer>
+                <Button.Group variant="ghost" space={2}>
+                  <Button onPress={handleSubmit}>SEND</Button>
+                  <Button
+                
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                    colorScheme="secondary"
+                  >
+                    CLOSE
+                  </Button>
+                </Button.Group>
+              </Modal.Footer>
+            </Modal.Content>
+          </Modal>
+          <Button
+          size="sm"
+            variant="outline"
+            colorScheme="secondary"
+            onPress={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            Update Photo
+          </Button>
+        </Center>
+
   );
-};
+}
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
@@ -56,16 +94,16 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -76,10 +114,10 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });

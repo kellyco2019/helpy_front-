@@ -1,14 +1,22 @@
 import React from 'react'
-import { View, Text, StatusBar, StyleSheet } from 'react-native'
+import { View,  StatusBar, StyleSheet } from 'react-native'
 import ModalCreateComments from '../components/Lesson/modalCreateComments';
 import ShowOneLesson from '../components/Lesson/showOneLesson';
-
+import {
+  Modal,
+  Button,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
 
 //Modal updateLesson debe renderizara solo cuando tenga toquen
 export default function Lesson() {
   return (
     <View style={styles.container}>
-      <Text>Event</Text>
+   <Heading>Event</Heading>
       <ShowOneLesson/>
       <ModalCreateComments/>
       <StatusBar style="auto" />

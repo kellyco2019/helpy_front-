@@ -1,9 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, FlatList, Image } from 'react-native'
+import { StyleSheet, View,  SafeAreaView, ActivityIndicator, FlatList, Image } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {
+  Modal,
+  Button,
+  Text,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
 export default function ShowLessonAndTeacher() {
   const [lesson, setLesson] = useState([])
   const [loading, setLoading] = useState(false)
@@ -62,19 +71,27 @@ export default function ShowLessonAndTeacher() {
        data={lesson}
        renderItem={({ item }) => (
         <View>
+          <Text> </Text>
           <Text style={styles.title}>{item.title}</Text>
+          <Text> {item.description}</Text>
           <Image
               style={styles.image}
               source={{ uri: item.image }}
             />
-          <Text>{item.category}</Text>
-          <Text>{item.teacher.usename}</Text>
+            <Text><Text bold>Member Name:</Text>{item.member}</Text>
+            <Text>Type of Event: {item.category}</Text>
+            <Text> <Text bold>Minutes: </Text>{item.time}</Text>
+
+          <Text> </Text>
+          <Divider my={2} />
+          
         </View>
         
       )}
       keyExtractor={item => `${item._id}`} 
     />
     <StatusBar style="auto" /> 
+   
   </SafeAreaView>
   );
 }
@@ -85,9 +102,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 390,
+    textAlign: "center",
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold'
   },
   image: {
