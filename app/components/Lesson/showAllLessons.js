@@ -26,7 +26,7 @@ export default function ShowAllLessons() {
     axios({
 
       method: 'GET',
-      baseURL: 'http://192.168.20.21:8000',
+      baseURL: process.env.REACT_APP_SERVER_URL || 'http://192.168.20.21:8000',
       url: '/lessons/home'
     })
       .then(({ data }) => {
