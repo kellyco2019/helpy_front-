@@ -11,22 +11,30 @@ import Profile from "./app/screens/Profile";
 import Category from "./app/screens/Category";
 import MyLesson from "./app/screens/MyLesson";
 import NewLesson from "./app/screens/NewLesson";
-
+import WatchVideo from "./app/screens/WatchVideo";
+import {  NativeBaseProvider } from "native-base"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LogIn} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name='Events' component={Lessons} />
-        <Stack.Screen name="Event" component={Lesson} />
-        <Stack.Screen name="Category" component={Category} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name='My Events' component={MyLesson} />
-        <Stack.Screen name="New Event" component={NewLesson} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={LogIn} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name='Events' component={Lessons} />
+          <Stack.Screen name="Event" component={Lesson} />
+          <Stack.Screen name="Category" component={Category} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name='My Events' component={MyLesson} />
+          <Stack.Screen name="New Event" component={NewLesson} />
+          <Stack.Screen name="Watch Video" component={WatchVideo} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
+
+
+
+
 }

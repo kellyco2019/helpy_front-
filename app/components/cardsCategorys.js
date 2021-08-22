@@ -8,23 +8,23 @@ export default function CardsCategory() {
   const navigation = useNavigation()
 
   function handleSubmitOne() {
-
+    
     navigation.navigate('Category', {
-      _category: 'retos'
+      _category: 'Mindfullness'
     })
   }
 
   function handleSubmitTwo() {
    
     navigation.navigate('Category', {
-      _category: 'gente fuerte'
+      _category: 'Yoga'
     })
   }
 
   function handleSubmitTree() {
   
     navigation.navigate('Category', {
-      _category: 'gente_triste'
+      _category: 'Stretching'
     })
   }
 
@@ -32,7 +32,7 @@ export default function CardsCategory() {
   function handleSubmitFour() {
   
     navigation.navigate('Category', {
-      _category: 'Mindfullness'
+      _category: 'Gentle'
     })
   }
 

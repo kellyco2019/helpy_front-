@@ -3,9 +3,12 @@ import { View, Text, StatusBar, StyleSheet, Image, Button, ScrollView } from 're
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native'
 import { Video, AVPlaybackStatus } from 'expo-av';
+import { useNavigation } from "@react-navigation/native";
 
 export default function ShowOneLesson() {
   const [lesson, setLesson] = useState({})
+  const navigation = useNavigation()
+  
   const route = useRoute()
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
@@ -22,33 +25,41 @@ export default function ShowOneLesson() {
       .then(({ data }) => setLesson(data))
   }, [])
 
+  // let link= lesson.link
   return (
     <ScrollView>
     <View style={styles.container}>
      
       <Text style={styles.title}>{lesson.title}</Text>
           <Text>{lesson.description}</Text>
-          
+          {/* <Text>{lesson.link}</Text> */}
           <Image
             style={styles.image}
             source={{ uri: lesson.image }}
-          
           />
           <Text>{lesson.category}</Text>
           <Text>{lesson.time}</Text>
-          
+          <Button
+              color="#f194ff"
+              title="Go to video"
+              onPress={() => navigation.navigate('Watch Video', {
+                _id: lesson._id,
+                video: lesson.title,
+                uri: lesson.image
+              })} />
       <StatusBar style="auto" />
 
-<Video
+{/* <Video
         ref={video}
         style={styles.video}
         source={{
-          uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+          uri: lesson.video,
         }}
         useNativeControls
         resizeMode="contain"
-        isLooping
         onPlaybackStatusUpdate={status => setStatus(() => status)}
+        shouldPlay={false}
+        AVPlaybackStatus
       />
       <View style={styles.buttons}>
         <Button
@@ -58,8 +69,7 @@ export default function ShowOneLesson() {
             status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
           }
         />
-
-    </View>  
+    </View>   */}
     </View>
     </ScrollView>
    

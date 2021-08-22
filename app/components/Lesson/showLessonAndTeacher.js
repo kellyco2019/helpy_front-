@@ -4,8 +4,6 @@ import { StyleSheet, View, Text, SafeAreaView, ActivityIndicator, FlatList, Imag
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
 export default function ShowLessonAndTeacher() {
   const [lesson, setLesson] = useState([])
   const [loading, setLoading] = useState(false)
