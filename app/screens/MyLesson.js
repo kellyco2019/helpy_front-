@@ -1,13 +1,21 @@
 import React from 'react'
-import { View, Text, StatusBar, StyleSheet } from 'react-native'
+import { View,  StatusBar, StyleSheet } from 'react-native'
 import ShowLessonAndTeacher from '../components/Lesson/showLessonAndTeacher';
-
+import {
+  Text,
+  Button,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
 
 //Modal updateLesson debe renderizara solo cuando tenga toquen
 export default function MyLesson() {
   return (
     <View style={styles.container}>
-      <Text> My Events</Text>
+      <Heading>My Events</Heading>
       <ShowLessonAndTeacher/>
       <StatusBar style="auto" />
     </View>

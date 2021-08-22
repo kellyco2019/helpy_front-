@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StatusBar, StyleSheet, Button, ScrollView } from 'react-native'
+import { View,  StatusBar, StyleSheet,  ScrollView } from 'react-native'
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native'
 import { Video, AVPlaybackStatus } from 'expo-av';
-
+import {
+    Text,
+    Button,
+    Divider,
+    Input,
+    Center,
+    NativeBaseProvider,
+    Heading
+  } from "native-base";
 export default function WatchVideo() {
     const [lesson, setLesson] = useState({})
 
@@ -27,6 +35,7 @@ export default function WatchVideo() {
     return (
         <ScrollView>
             <View style={styles.container}>
+            <Heading>Enjoy your practice</Heading>
                 <Video
                     ref={video}
                     style={styles.video}
@@ -41,12 +50,13 @@ export default function WatchVideo() {
                 />
                 <View style={styles.buttons}>
                     <Button
-                        color="#f194ff"
-                        title={status.isPlaying ? 'Pause' : 'Play'}
+                        size="sm"
+                        colorScheme="secondary"                     
                         onPress={() =>
                             status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-                        }
-                    />
+                        }>
+                          {status.isPlaying ? 'Pause' : 'Play'}
+                   </Button>
                 </View>
             </View>
         </ScrollView>

@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StatusBar, StyleSheet, Image, Button, ScrollView } from 'react-native'
+import { View, StatusBar, StyleSheet, Image, ScrollView } from 'react-native'
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native'
 import { Video, AVPlaybackStatus } from 'expo-av';
+import {
+  Text,
+  Button,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
 export default function ShowOneLesson() {
@@ -28,48 +37,28 @@ export default function ShowOneLesson() {
   // let link= lesson.link
   return (
     <ScrollView>
-    <View style={styles.container}>
+    <View style={styles.list}>
      
       <Text style={styles.title}>{lesson.title}</Text>
           <Text>{lesson.description}</Text>
-          {/* <Text>{lesson.link}</Text> */}
+        
           <Image
             style={styles.image}
             source={{ uri: lesson.image }}
           />
-          <Text>{lesson.category}</Text>
-          <Text>{lesson.time}</Text>
-          <Button
-              color="#f194ff"
-              title="Go to video"
+          
+          <Text> <Text bold>Minutes: </Text>{lesson.time}</Text>
+          <Button   
+          size="sm"
+          colorScheme="secondary"     
               onPress={() => navigation.navigate('Watch Video', {
                 _id: lesson._id,
                 video: lesson.title,
                 uri: lesson.image
-              })} />
+              })} >
+                Go to Video
+              </Button>
       <StatusBar style="auto" />
-
-{/* <Video
-        ref={video}
-        style={styles.video}
-        source={{
-          uri: lesson.video,
-        }}
-        useNativeControls
-        resizeMode="contain"
-        onPlaybackStatusUpdate={status => setStatus(() => status)}
-        shouldPlay={false}
-        AVPlaybackStatus
-      />
-      <View style={styles.buttons}>
-        <Button
-          color="#f194ff"
-          title={status.isPlaying ? 'Pause' : 'Play'}
-          onPress={() =>
-            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-          }
-        />
-    </View>   */}
     </View>
     </ScrollView>
    
@@ -82,6 +71,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  list: {
+    paddingHorizontal: 0,
+    width: 380,
+    textAlign: "center",
   },
   title: {
     fontSize: 24,

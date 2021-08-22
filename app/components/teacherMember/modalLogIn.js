@@ -108,6 +108,7 @@ export default function ModalLogIn() {
                 <Button.Group variant="ghost" space={2}>
                   <Button onPress={handleSubmit}>SEND</Button>
                   <Button
+
                     onPress={() => {
                       setModalVisible(!modalVisible);
                     }}
@@ -120,6 +121,8 @@ export default function ModalLogIn() {
             </Modal.Content>
           </Modal>
           <Button
+          size="md"
+          colorScheme="secondary"
             onPress={() => {
               setModalVisible(!modalVisible);
             }}

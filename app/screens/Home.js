@@ -1,10 +1,17 @@
 import React from 'react'
-import { View, Text, StatusBar, StyleSheet, Button } from 'react-native'
+import { View, StatusBar, StyleSheet,  } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import ShowAllLessons from '../components/Lesson/showAllLessons';
 import CardsCategory from '../components/cardsCategorys';
-
-
+import {
+  Modal,
+  Button,
+  Divider,
+  Input,
+  Center,
+  NativeBaseProvider,
+  Heading
+} from "native-base";
 // export default function Home({ navigation }) {
 export default function Home() {
   const navigation = useNavigation()
@@ -15,17 +22,24 @@ export default function Home() {
       <View style={styles.fixToText}>
        <View  style={{ margin: 10, flex: 0.5 }}>
          <Button
-      
-         color="#f194ff"
+        size="sm"
+        colorScheme="secondary"
+        
          title="Profile"
-         onPress={() => navigation.navigate('Profile' )} 
-         />          
+         onPress={() => navigation.navigate('Profile' )} >
+          Profile
+         </Button> 
+                 
           </View>       
          <View style={{ margin: 10, flex: 0.5 }}>
           <Button
-          color="#f194ff"
+          size="sm"
+          colorScheme="secondary"
+          
           title="Events"
-          onPress={() => navigation.navigate('Events')}/>
+          onPress={() => navigation.navigate('Events')}>
+            Events
+           </Button> 
          </View>       
       </View>
       <CardsCategory/>

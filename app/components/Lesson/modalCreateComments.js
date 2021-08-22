@@ -30,9 +30,9 @@ export default function ModalCreateComments() {
       >
         <Modal.Content>
           <Modal.CloseButton />
-          <Modal.Header>Give your opnion about this lesson</Modal.Header>
+          <Modal.Header>Give your opnion about this event</Modal.Header>
           <Modal.Body>
-            The best event ever!!!
+            I realy like it!
             <Input
               mt={4}
               ref={initialRef}
@@ -56,6 +56,9 @@ export default function ModalCreateComments() {
         </Modal.Content>
       </Modal>
       <Button
+        variant="outline"
+        size='sm'
+        colorScheme="secondary"
         onPress={() => {
           setModalVisible(!modalVisible)
         }}
