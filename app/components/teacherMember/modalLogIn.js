@@ -76,7 +76,7 @@ export default function ModalLogIn() {
   }
 
   return (
-      <NativeBaseProvider>
+   
         <Center flex={1}>
           <Modal
             size="lg"
@@ -127,7 +127,7 @@ export default function ModalLogIn() {
             Sign In
           </Button>
         </Center>
-      </NativeBaseProvider>
+
   );
 }
 
