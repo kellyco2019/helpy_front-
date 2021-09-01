@@ -16,7 +16,7 @@ export default function MyLesson() {
   return (
     <View style={styles.container}>
       <Heading>My Events</Heading>
-      <ShowLessonAndTeacher/>
+      <ShowLessonAndTeacher/>   
       <StatusBar style="auto" />
     </View>
   );

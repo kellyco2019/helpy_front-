@@ -12,6 +12,7 @@ import Category from "./app/screens/Category";
 import MyLesson from "./app/screens/MyLesson";
 import NewLesson from "./app/screens/NewLesson";
 import WatchVideo from "./app/screens/WatchVideo";
+import UpdateEvent from "./app/screens/UpdateEvent";
 import {  NativeBaseProvider } from "native-base"
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ export default function App() {
           <Stack.Screen name='My Events' component={MyLesson} />
           <Stack.Screen name="New Event" component={NewLesson} />
           <Stack.Screen name="Watch Video" component={WatchVideo} />
+          <Stack.Screen name="Update Event" component={UpdateEvent} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, View,  SafeAreaView, ActivityIndicator, FlatList, Image } from 'react-native'
 import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import {
   Modal,
   Button,
@@ -17,7 +18,8 @@ export default function ShowLessonAndTeacher() {
   const [lesson, setLesson] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-
+  const navigation = useNavigation()
+  
   const getData = async () => await AsyncStorage.getItem('token')
 
   useEffect(() => {
@@ -81,7 +83,17 @@ export default function ShowLessonAndTeacher() {
             <Text><Text bold>Member Name:</Text>{item.member}</Text>
             <Text>Type of Event: {item.category}</Text>
             <Text> <Text bold>Minutes: </Text>{item.time}</Text>
-
+            <Button
+              size="sm"
+              colorScheme="secondary"
+              
+              onPress={() => navigation.navigate('Update Event', {
+                _id: item._id,
+                title: item.title,
+              })}
+            >
+              Update Event
+            </Button>
           <Text> </Text>
           <Divider my={2} />
           
