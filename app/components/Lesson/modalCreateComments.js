@@ -4,7 +4,7 @@ import { Modal, Button, Input, Center, NativeBaseProvider } from "native-base"
 
 
 export default function ModalCreateComments() {
-  
+// prueba
   
   const [modalVisible, setModalVisible] = useState(false)
   const [comments, setComments] = useState('')
